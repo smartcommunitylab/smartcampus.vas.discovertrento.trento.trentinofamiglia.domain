@@ -62,8 +62,8 @@ public class EventsDataConverter implements DataConverter {
 		
 		ge.setType(TYPE_FAMILY);
 		
-		if (ev.hasPoi()) {
-			ge.setAddressString(ev.getPoi().getAddress().getCity());
+		if (ev.hasPlace()) {
+			ge.setAddressString(ev.getPlace());
 		}
 		
 		String s = ev.getId();

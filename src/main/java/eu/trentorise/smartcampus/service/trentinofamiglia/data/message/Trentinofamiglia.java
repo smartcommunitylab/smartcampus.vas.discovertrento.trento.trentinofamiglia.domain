@@ -39,7 +39,11 @@ public final class Trentinofamiglia {
     boolean hasOrganization();
     String getOrganization();
     
-    // optional .it.sayservice.platform.core.message.POI poi = 8;
+    // required string place = 8;
+    boolean hasPlace();
+    String getPlace();
+    
+    // optional .it.sayservice.platform.core.message.POI poi = 9;
     boolean hasPoi();
     it.sayservice.platform.core.message.Core.POI getPoi();
     it.sayservice.platform.core.message.Core.POIOrBuilder getPoiOrBuilder();
@@ -297,11 +301,43 @@ public final class Trentinofamiglia {
       }
     }
     
-    // optional .it.sayservice.platform.core.message.POI poi = 8;
-    public static final int POI_FIELD_NUMBER = 8;
+    // required string place = 8;
+    public static final int PLACE_FIELD_NUMBER = 8;
+    private java.lang.Object place_;
+    public boolean hasPlace() {
+      return ((bitField0_ & 0x00000080) == 0x00000080);
+    }
+    public String getPlace() {
+      java.lang.Object ref = place_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          place_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getPlaceBytes() {
+      java.lang.Object ref = place_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        place_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // optional .it.sayservice.platform.core.message.POI poi = 9;
+    public static final int POI_FIELD_NUMBER = 9;
     private it.sayservice.platform.core.message.Core.POI poi_;
     public boolean hasPoi() {
-      return ((bitField0_ & 0x00000080) == 0x00000080);
+      return ((bitField0_ & 0x00000100) == 0x00000100);
     }
     public it.sayservice.platform.core.message.Core.POI getPoi() {
       return poi_;
@@ -318,6 +354,7 @@ public final class Trentinofamiglia {
       to_ = "";
       days_ = "";
       organization_ = "";
+      place_ = "";
       poi_ = it.sayservice.platform.core.message.Core.POI.getDefaultInstance();
     }
     private byte memoizedIsInitialized = -1;
@@ -350,6 +387,10 @@ public final class Trentinofamiglia {
         return false;
       }
       if (!hasOrganization()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasPlace()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -388,7 +429,10 @@ public final class Trentinofamiglia {
         output.writeBytes(7, getOrganizationBytes());
       }
       if (((bitField0_ & 0x00000080) == 0x00000080)) {
-        output.writeMessage(8, poi_);
+        output.writeBytes(8, getPlaceBytes());
+      }
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        output.writeMessage(9, poi_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -429,7 +473,11 @@ public final class Trentinofamiglia {
       }
       if (((bitField0_ & 0x00000080) == 0x00000080)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(8, poi_);
+          .computeBytesSize(8, getPlaceBytes());
+      }
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(9, poi_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -570,12 +618,14 @@ public final class Trentinofamiglia {
         bitField0_ = (bitField0_ & ~0x00000020);
         organization_ = "";
         bitField0_ = (bitField0_ & ~0x00000040);
+        place_ = "";
+        bitField0_ = (bitField0_ & ~0x00000080);
         if (poiBuilder_ == null) {
           poi_ = it.sayservice.platform.core.message.Core.POI.getDefaultInstance();
         } else {
           poiBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000080);
+        bitField0_ = (bitField0_ & ~0x00000100);
         return this;
       }
       
@@ -645,6 +695,10 @@ public final class Trentinofamiglia {
         if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
           to_bitField0_ |= 0x00000080;
         }
+        result.place_ = place_;
+        if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
+          to_bitField0_ |= 0x00000100;
+        }
         if (poiBuilder_ == null) {
           result.poi_ = poi_;
         } else {
@@ -687,6 +741,9 @@ public final class Trentinofamiglia {
         if (other.hasOrganization()) {
           setOrganization(other.getOrganization());
         }
+        if (other.hasPlace()) {
+          setPlace(other.getPlace());
+        }
         if (other.hasPoi()) {
           mergePoi(other.getPoi());
         }
@@ -720,6 +777,10 @@ public final class Trentinofamiglia {
           return false;
         }
         if (!hasOrganization()) {
+          
+          return false;
+        }
+        if (!hasPlace()) {
           
           return false;
         }
@@ -791,6 +852,11 @@ public final class Trentinofamiglia {
               break;
             }
             case 66: {
+              bitField0_ |= 0x00000080;
+              place_ = input.readBytes();
+              break;
+            }
+            case 74: {
               it.sayservice.platform.core.message.Core.POI.Builder subBuilder = it.sayservice.platform.core.message.Core.POI.newBuilder();
               if (hasPoi()) {
                 subBuilder.mergeFrom(getPoi());
@@ -1057,12 +1123,48 @@ public final class Trentinofamiglia {
         onChanged();
       }
       
-      // optional .it.sayservice.platform.core.message.POI poi = 8;
+      // required string place = 8;
+      private java.lang.Object place_ = "";
+      public boolean hasPlace() {
+        return ((bitField0_ & 0x00000080) == 0x00000080);
+      }
+      public String getPlace() {
+        java.lang.Object ref = place_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          place_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setPlace(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000080;
+        place_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearPlace() {
+        bitField0_ = (bitField0_ & ~0x00000080);
+        place_ = getDefaultInstance().getPlace();
+        onChanged();
+        return this;
+      }
+      void setPlace(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000080;
+        place_ = value;
+        onChanged();
+      }
+      
+      // optional .it.sayservice.platform.core.message.POI poi = 9;
       private it.sayservice.platform.core.message.Core.POI poi_ = it.sayservice.platform.core.message.Core.POI.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           it.sayservice.platform.core.message.Core.POI, it.sayservice.platform.core.message.Core.POI.Builder, it.sayservice.platform.core.message.Core.POIOrBuilder> poiBuilder_;
       public boolean hasPoi() {
-        return ((bitField0_ & 0x00000080) == 0x00000080);
+        return ((bitField0_ & 0x00000100) == 0x00000100);
       }
       public it.sayservice.platform.core.message.Core.POI getPoi() {
         if (poiBuilder_ == null) {
@@ -1081,7 +1183,7 @@ public final class Trentinofamiglia {
         } else {
           poiBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000080;
+        bitField0_ |= 0x00000100;
         return this;
       }
       public Builder setPoi(
@@ -1092,12 +1194,12 @@ public final class Trentinofamiglia {
         } else {
           poiBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000080;
+        bitField0_ |= 0x00000100;
         return this;
       }
       public Builder mergePoi(it.sayservice.platform.core.message.Core.POI value) {
         if (poiBuilder_ == null) {
-          if (((bitField0_ & 0x00000080) == 0x00000080) &&
+          if (((bitField0_ & 0x00000100) == 0x00000100) &&
               poi_ != it.sayservice.platform.core.message.Core.POI.getDefaultInstance()) {
             poi_ =
               it.sayservice.platform.core.message.Core.POI.newBuilder(poi_).mergeFrom(value).buildPartial();
@@ -1108,7 +1210,7 @@ public final class Trentinofamiglia {
         } else {
           poiBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000080;
+        bitField0_ |= 0x00000100;
         return this;
       }
       public Builder clearPoi() {
@@ -1118,11 +1220,11 @@ public final class Trentinofamiglia {
         } else {
           poiBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000080);
+        bitField0_ = (bitField0_ & ~0x00000100);
         return this;
       }
       public it.sayservice.platform.core.message.Core.POI.Builder getPoiBuilder() {
-        bitField0_ |= 0x00000080;
+        bitField0_ |= 0x00000100;
         onChanged();
         return getPoiFieldBuilder().getBuilder();
       }
@@ -1174,12 +1276,12 @@ public final class Trentinofamiglia {
     java.lang.String[] descriptorData = {
       "\n\026trentinofamiglia.proto\022?eu.trentorise." +
       "smartcampus.service.trentinofamiglia.dat" +
-      "a.message\032\ncore.proto\"\265\001\n\016EventoFamiglia" +
+      "a.message\032\ncore.proto\"\304\001\n\016EventoFamiglia" +
       "\022\n\n\002id\030\001 \002(\t\022\r\n\005title\030\002 \002(\t\022\023\n\013descripti" +
       "on\030\003 \002(\t\022\014\n\004from\030\004 \002(\t\022\n\n\002to\030\005 \002(\t\022\014\n\004da" +
-      "ys\030\006 \002(\t\022\024\n\014organization\030\007 \002(\t\0225\n\003poi\030\010 " +
-      "\001(\0132(.it.sayservice.platform.core.messag" +
-      "e.POI"
+      "ys\030\006 \002(\t\022\024\n\014organization\030\007 \002(\t\022\r\n\005place\030" +
+      "\010 \002(\t\0225\n\003poi\030\t \001(\0132(.it.sayservice.platf" +
+      "orm.core.message.POI"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -1191,7 +1293,7 @@ public final class Trentinofamiglia {
           internal_static_eu_trentorise_smartcampus_service_trentinofamiglia_data_message_EventoFamiglia_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_eu_trentorise_smartcampus_service_trentinofamiglia_data_message_EventoFamiglia_descriptor,
-              new java.lang.String[] { "Id", "Title", "Description", "From", "To", "Days", "Organization", "Poi", },
+              new java.lang.String[] { "Id", "Title", "Description", "From", "To", "Days", "Organization", "Place", "Poi", },
               eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.EventoFamiglia.class,
               eu.trentorise.smartcampus.service.trentinofamiglia.data.message.Trentinofamiglia.EventoFamiglia.Builder.class);
           return null;
