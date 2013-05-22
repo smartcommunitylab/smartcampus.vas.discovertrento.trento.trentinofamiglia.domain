@@ -19,7 +19,9 @@ import it.sayservice.platform.compiler.domain.model.annotations.ServiceNotificat
 import it.sayservice.platform.compiler.domain.model.annotations.Subscription;
 
 import eu.trentorise.smartcampus.domain.discovertrento.EventService;
+import eu.trentorise.smartcampus.domain.discovertrento.POIService;
 import eu.trentorise.smartcampus.domain.discovertrento.GenericEvent;
+import eu.trentorise.smartcampus.domain.discovertrento.GenericPOI;
 
 
 DomainObject TrentinoFamigliaService implements EventService {
@@ -32,5 +34,18 @@ DomainObject TrentinoFamigliaService implements EventService {
     
     action initialize() {
         invoke subscribeEvents();
+    }
+}
+
+DomainObject OrganizzazioniCertificateService implements POIService {
+    
+    @ServiceNotification(serviceId="smartcampus.service.trentinofamiglia", methodName="GetOrganizzazioni", converter="eu.trentorise.smartcampus.domain.trentinofamiglia.converter.OrganizationsDataConverter")
+    port update(data : GenericPOI[]);
+
+    @Subscription(serviceId="smartcampus.service.trentinofamiglia", methodName="GetOrganizzazioni")
+    operation subscribeOrganizations();       
+    
+    action initialize() {
+        invoke subscribeOrganizations();
     }
 }
