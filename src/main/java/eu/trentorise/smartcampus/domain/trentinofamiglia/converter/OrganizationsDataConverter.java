@@ -65,6 +65,7 @@ public class OrganizationsDataConverter implements DataConverter {
 		gp.setSource("TrentinoFamiglia");
 		
 		gp.setTitle(org.getName());
+		gp.setDescription(org.getLink());
 		
 		gp.setId(org.getPoi().getPoiId());
 		
