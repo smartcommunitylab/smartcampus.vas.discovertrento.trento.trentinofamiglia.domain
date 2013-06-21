@@ -76,12 +76,12 @@ public class OrganizationsData {
 		return od.errors.toArray(new String[od.errors.size()]);
 	}
 
-	public Map<String, String> getData() {
+	public Map<String, String> getIdCoords() {
 		return idCoords;
 	}
 
-	public void setData(Map<String, String> data) {
-		this.idCoords = data;
+	public void setIdCoords(Map<String, String> idCoords) {
+		this.idCoords = idCoords;
 	}
 
 	public List<GenericPOI> getValid() {
