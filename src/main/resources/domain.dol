@@ -23,6 +23,8 @@ import eu.trentorise.smartcampus.domain.discovertrento.POIService;
 import eu.trentorise.smartcampus.domain.discovertrento.GenericEvent;
 import eu.trentorise.smartcampus.domain.discovertrento.GenericPOI;
 
+import eu.trentorise.smartcampus.domain.trentinofamiglia.helper.OrganizationsData;
+
 
 DomainObject TrentinoFamigliaService implements EventService {
     
@@ -39,6 +41,33 @@ DomainObject TrentinoFamigliaService implements EventService {
 
 DomainObject OrganizzazioniCertificateService implements POIService {
     
+	public var data : OrganizationsData;
+	
+	port update(data : GenericPOI[]);
+	port errors(data : GenericPOI[]);
+
+	action checkData(pois : GenericPOI[]) {
+		set data = OrganizationsData.checkValidity(data,pois);
+		valid : GenericPOI[] = OrganizationsData.getValidPOI(data); 
+		if (count(valid) > 0) {
+			publish update(valid);
+		}
+		errors : String[] = OrganizationsData.getErrors(data); 
+		if (count(errors) > 0) {
+			publish errors(errors);
+		}		
+	}
+
+    action initialize() {
+        set data = OrganizationsData.init();
+    }
+    
+    subscribe OrganizzazioniSubscriber!update() => checkData(data);
+    
+}
+
+DomainObject OrganizzazioniSubscriber  {
+
     @ServiceNotification(serviceId="smartcampus.service.trentinofamiglia", methodName="GetOrganizzazioni", converter="eu.trentorise.smartcampus.domain.trentinofamiglia.converter.OrganizationsDataConverter")
     port update(data : GenericPOI[]);
 
@@ -48,4 +77,5 @@ DomainObject OrganizzazioniCertificateService implements POIService {
     action initialize() {
         invoke subscribeOrganizations();
     }
+
 }

@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
+
+import org.codehaus.jackson.map.ObjectMapper;
 
 import com.google.protobuf.ByteString;
 
@@ -72,7 +75,15 @@ public class EventsDataConverter implements DataConverter {
 			ge.setPoiId(ev.getPoi().getPoiId());
 		}
 		ge.setTitle(ev.getTitle());
-		
+
+		Map<String,Object> map = new TreeMap<String, Object>();
+		map.put("certified", ev.getCertified());
+		try {
+			ge.setCustomData(new ObjectMapper().writeValueAsString(map));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		return ge;
 	}
 
