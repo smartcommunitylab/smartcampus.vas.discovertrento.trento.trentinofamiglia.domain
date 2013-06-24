@@ -39,12 +39,18 @@ DomainObject TrentinoFamigliaService implements EventService {
     }
 }
 
-DomainObject OrganizzazioniCertificateService implements POIService {
+DomainType ErrorSender {
+
+	port errors(errors: String);
+
+}
+
+DomainObject OrganizzazioniCertificateService implements POIService, ErrorSender {
     
 	public var data : OrganizationsData;
 	
 	port update(data : GenericPOI[]);
-	port errors(data : GenericPOI[]);
+
 
 	action checkData(pois : GenericPOI[]) {
 		set data = OrganizationsData.checkValidity(data,pois);
